@@ -21,11 +21,10 @@ Bu satırın anlamı Django, admin ile başlayan her URL için ona uyan bir view
 
 
 """
+from django.urls import path, include
 from django.contrib import admin
-from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
-
 ]
