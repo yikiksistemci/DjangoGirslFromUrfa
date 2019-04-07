@@ -12,10 +12,20 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+    Önceki bölümde gördüğümüz yönetici URL'si burada:
+/////------------///////
+mysite/urls.py
+    path('admin/', admin.site.urls),
+Bu satırın anlamı Django, admin ile başlayan her URL için ona uyan bir view bulur demektir. Bu durumda bir sürü yönetici URL'lerini ekliyoruz, böylece hepsi bu küçük dosyanın içinde sıkıştırılmış bir şekilde durmuyor -- bu hali daha okunabilir ve düzenli.
+
+
+
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('blog.urls')),
+
 ]
