@@ -1,0 +1,60 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    field.cattle.io/publicEndpoints: '[{"addresses":["172.19.0.2"],"port":443,"protocol":"HTTPS","serviceName":"default:django-rancher-svc","ingressName":"default:django","hostname":"django.localhost","allNodes":false}]'
+  creationTimestamp: "2021-01-06T13:21:32Z"
+  generation: 1
+  managedFields:
+  - apiVersion: networking.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        f:rules: {}
+        f:tls: {}
+    manager: rancher
+    operation: Update
+    time: "2021-01-06T13:21:32Z"
+  - apiVersion: extensions/v1beta1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:field.cattle.io/publicEndpoints: {}
+    manager: rancher
+    operation: Update
+    time: "2021-01-06T13:21:33Z"
+  - apiVersion: extensions/v1beta1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:loadBalancer:
+          f:ingress: {}
+    manager: traefik
+    operation: Update
+    time: "2021-01-06T13:21:33Z"
+  name: django
+  namespace: default
+  resourceVersion: "246421"
+  selfLink: /apis/networking.k8s.io/v1/namespaces/default/ingresses/django
+  uid: 79061d9e-e545-4d89-8aa5-e9fb696f7a1f
+spec:
+  rules:
+  - host: django.localhost
+    http:
+      paths:
+      - backend:
+          service:
+            name: django-rancher-svc
+            port:
+              number: 8000
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - django.localhost
+status:
+  loadBalancer:
+    ingress:
+    - ip: 172.19.0.2
+
